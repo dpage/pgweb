@@ -36,6 +36,8 @@
   --btn-download-bdr-color: #336791;
   --btn-download-decoration-bdr-color: inherit;
   --btn-download-decoration-bg-color: #e7eae8;
+  --btn-download-bg-color: #fff;
+  --btn-download-active-bg-color: #e7eae8;
   --btn-download-fg-color: #336791;
   --btn-light-bdr-color: #6c757d;
   --btn-light-bg-color: #6c757d;
@@ -110,7 +112,7 @@
   --header-fg-color: #336791;
   --hr-bdr-color: #e7eae8;
   --i-fa-heart-fg-color: #b52525;
-  --i-fas-search-fg-color: #336791;
+  --i-fas-fg-color: #336791;
   --navbar-bg-color: inherit;
   --navbar-fg-color: inherit;
   --navbar-sdw-color: rgba(0,0,0,0.2);
@@ -154,8 +156,7 @@
 }
 
 /** DARK COLOR (overrides only) **/
-@media (prefers-color-scheme: dark) {
-  :root  {
+[data-theme="dark"] {
     --a-fg-color: #2b6da3;
     --a-highlight-fg-color: #50b0f0;
     --alert-warning-bg-color: #bcb5b5;
@@ -166,6 +167,8 @@
     --btn-download-bdr-color: #2b6da3;
     --btn-download-decoration-bdr-color: #d4d4d4;
     --btn-download-decoration-bg-color: #4a4a4a;
+    --btn-download-bg-color: #212121;
+    --btn-download-active-bg-color: #4A4A4A;
     --btn-download-fg-color: #2b6da3;
     --btn-primary-bdr-color: #2b6da3;
     --btn-primary-bg-color: #2b6da3;
@@ -220,7 +223,6 @@
     --td-fm-unk-fg-color: #000;
     --td-fm-yes-bg-color: #89ff96;
     --td-fm-yes-fg-color: #000;
-  }
 }
 
 
@@ -1367,8 +1369,8 @@ code,
   color: var(--i-fa-heart-fg-color);
 }
 
-i.fas.fa-search {
-  color: var(--i-fas-search-fg-color);
+i.fas {
+  color: var(--i-fas-fg-color);
 }
 
 /* #CODE */
@@ -1684,11 +1686,16 @@ table.contributor-table thead tr th {
   border-color: var(--btn-download-bdr-color);
   border-width: 2px;
   color: var(--btn-download-fg-color) !important;
+  background-color: var(--btn-download-bg-color);
 }
 
 .btn-download:hover {
   background-color: var(--btn-download-decoration-bg-color);
   border-color: var(--btn-download-decoration-bdr-color);
+}
+
+.btn-download-active {
+  background-color: var(--btn-download-active-bg-color);
 }
 
 .download-subnav {

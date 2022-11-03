@@ -30,6 +30,18 @@
     <link rel="alternate" type="application/rss+xml" title="PostgreSQL Events" href="/events.rss" />
   {%endif%}
     <link rel="stylesheet" type="text/css" href="/dyncss/base.css?{{gitrev}}">
+
+    <script>
+      let theme = 'light';
+      if (localStorage.getItem('theme')) {
+        if (localStorage.getItem('theme') === 'dark') {
+          theme = 'dark';
+        }
+      } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        theme = 'dark';
+      }
+    </script>
+
   {%block extrahead%}{%endblock%}
   </head>
   <body>
@@ -56,14 +68,17 @@
                 <li class="nav-item p-2"><a href="/about/donate/" title="Donate">Donate</a></li>
                 <li class="nav-item p-2"><a href="/account/" title="Your account">Your account</a></li>
               </ul>
-             <form role="search" method="get" action="/search/">
-               <div class="input-group">
-                 <input id="q" name="q" type="text" size="20" maxlength="255" accesskey="s"  class="form-control" placeholder="Search for...">
-                 <span class="input-group-btn">
-                   <button class="btn btn-default" type="submit"><i class="fas fa-search"></i></button>
-                 </span>
-               </div><!-- /input-group -->
-             </form>
+              <form role="search" method="get" action="/search/">
+                <div class="input-group">
+                  <input id="q" name="q" type="text" size="20" maxlength="255" accesskey="s"  class="form-control" placeholder="Search for...">
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit"><i class="fas fa-search"></i></button>
+                  </span>
+                </div><!-- /input-group -->
+              </form>
+              <form id="form-theme" class="form-inline" style="display: none;">
+                <button id="btn-theme" class="btn btn-default ml-1" type="button" onclick="theme_switch()"></button>
+              </form>
             </div>
           </nav>
         </div>
@@ -186,5 +201,44 @@
     <script src="/media/js/popper-1.16.0.min.js"></script>
     <script src="/media/js/bootstrap-4.4.1.min.js"></script>
     <script src="/media/js/main.js?{{gitrev}}"></script>
+
+    <script>
+      function theme_apply() {
+        'use strict';
+        if (theme === 'light') {
+          document.getElementById('btn-theme').innerHTML = '<i class="fas fa-moon"></i>';
+          document.documentElement.setAttribute('data-theme', 'light');
+          localStorage.setItem('theme', 'light');
+        } else {
+          document.getElementById('btn-theme').innerHTML = '<i class="fas fa-sun"></i>';
+          document.documentElement.setAttribute('data-theme', 'dark');
+          localStorage.setItem('theme', 'dark');
+        }
+      }
+
+      theme_apply();
+      document.getElementById("form-theme").style.display="block";
+
+      function theme_switch() {
+        'use strict';
+        if (theme === 'light') {
+          theme = 'dark';
+        } else {
+          theme = 'light';
+        }
+        theme_apply();
+      }
+
+      let theme_OS = window.matchMedia('(prefers-color-scheme: light)');
+      theme_OS.addEventListener('change', function (e) {
+        'use strict';
+        if (e.matches) {
+          theme = 'light';
+        } else {
+          theme = 'dark';
+        }
+        theme_apply();
+      });
+    </script>
   </body>
 </html>

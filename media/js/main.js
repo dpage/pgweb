@@ -79,22 +79,13 @@ function copyScript(trigger, elem) {
  * families on the Download page
  */
 function showDistros(btn, osDiv) {
-    var default_color = '#FFFFFF';
-    var active_color = '#e7eae8';
-
-    // dark mode
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        default_color = '#212121';
-        active_color = '#4A4A4A';
-    }
-
     // Disable everything
-    document.getElementById('btn-download-bsd').style.background = default_color;
+    document.getElementById('btn-download-bsd').classList.remove("btn-download-active");;
     document.getElementById('download-subnav-bsd').style.display = 'none';
-    document.getElementById('btn-download-linux').style.background = default_color;
+    document.getElementById('btn-download-linux').classList.remove("btn-download-active");
     document.getElementById('download-subnav-linux').style.display = 'none';
 
     // Enable the one we want
-    btn.style.background = active_color;
+    btn.classList.add("btn-download-active");
     document.getElementById(osDiv).style.display = 'block';
 }

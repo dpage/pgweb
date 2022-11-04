@@ -104,3 +104,45 @@ document.querySelectorAll('button[data-confirm]').forEach((button) => {
         return false;
     });
 });
+
+
+      function theme_apply() {
+        'use strict';
+        if (theme === 'light') {
+          document.getElementById('btn-theme').innerHTML = '<i class="fas fa-moon"></i>';
+          document.documentElement.setAttribute('data-theme', 'light');
+          localStorage.setItem('theme', 'light');
+        } else {
+          document.getElementById('btn-theme').innerHTML = '<i class="fas fa-lightbulb"></i>';
+          document.documentElement.setAttribute('data-theme', 'dark');
+          localStorage.setItem('theme', 'dark');
+        }
+      }
+
+/*
+ * Handle theme switches
+ */
+theme_apply();
+document.getElementById("form-theme").style.display="block";
+
+function theme_switch() {
+  'use strict';
+  if (theme === 'light') {
+    theme = 'dark';
+  } else {
+    theme = 'light';
+  }
+  theme_apply();
+}
+
+let theme_OS = window.matchMedia('(prefers-color-scheme: light)');
+theme_OS.addEventListener('change', function (e) {
+  'use strict';
+  if (e.matches) {
+    theme = 'light';
+  } else {
+    theme = 'dark';
+  }
+  theme_apply();
+});
+

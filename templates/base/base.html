@@ -19,25 +19,25 @@
   <link rel="stylesheet" href="/media/css/bootstrap-4.4.1.min.css">
   <link rel="shortcut icon" href="/favicon.ico" />
   {%if newstags %}
-    {%comment%}Default RSS links are only shown on pages that have newstags set{%endcomment%}
-    <link rel="alternate" type="application/rss+xml" title="All PostgreSQL News" href="/news.rss" />
-    {%for t in newstags%}
-      <link rel="alternate" type="application/rss+xml" title="PostgreSQL News about {{t.name}}" href="/news/{{t.urlname}}.rss" />
-    {%endfor%}
-    <link rel="alternate" type="application/rss+xml" title="PostgreSQL Events" href="/events.rss" />
+  {%comment%}Default RSS links are only shown on pages that have newstags set{%endcomment%}
+  <link rel="alternate" type="application/rss+xml" title="All PostgreSQL News" href="/news.rss" />
+  {%for t in newstags%}
+    <link rel="alternate" type="application/rss+xml" title="PostgreSQL News about {{t.name}}" href="/news/{{t.urlname}}.rss" />
+  {%endfor%}
+  <link rel="alternate" type="application/rss+xml" title="PostgreSQL Events" href="/events.rss" />
   {%endif%}
-    <link rel="stylesheet" type="text/css" href="/dyncss/base.css?{{gitrev}}">
+  <link rel="stylesheet" type="text/css" href="/dyncss/base.css?{{gitrev}}">
 
-    <script>
-      let theme = 'light';
-      if (localStorage.getItem('theme')) {
-        if (localStorage.getItem('theme') === 'dark') {
-          theme = 'dark';
-        }
-      } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  <script>
+    let theme = 'light';
+    if (localStorage.getItem('theme')) {
+      if (localStorage.getItem('theme') === 'dark') {
         theme = 'dark';
       }
-    </script>
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      theme = 'dark';
+    }
+  </script>
 
   {%block extrahead%}{%endblock%}
   </head>
